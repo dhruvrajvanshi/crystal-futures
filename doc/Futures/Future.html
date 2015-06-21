@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+    var pathToIndex = "../index.html"
+  </script>
+  <script type="text/javascript" src="../js/type.js"></script>
+</head>
+<body>
+
+
+  <h1>class Futures::Future(T)</h1>
+
+
+
+
+
+
+
+  <h2>Superclass hierarchy</h2>
+  <div style="padding-left: 0px">Object</div><div style="padding-left: 20px">Reference</div><div style="padding-left: 40px"><a href="../Futures/Future.html">Futures::Future(T)</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul>
+    
+      <li class="entry-summary">
+        <a href="#new%28execution_context%20%3D%20InfiniteFiberExecutionContext.new%2C%20%26block%20%3A%20-%3E%20T%29-class-method" class="signature"><strong>.new</strong>(execution_context = InfiniteFiberExecutionContext.new, &block : -> T)</a>
+        
+          <div class="summary"><p>Constructor for a future Call Future.new with a block to get a future value Pass in an optional <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code> do define execution behaviour of the Future.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul>
+    
+      <li class="entry-summary">
+        <a href="#completed%3F-instance-method" class="signature"><strong>#completed?</strong></a>
+        
+          <div class="summary"><p>Returns true if computation completed or error thrown false otherwise</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error-instance-method" class="signature"><strong>#error</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#failed%3F-instance-method" class="signature"><strong>#failed?</strong></a>
+        
+          <div class="summary"><p>Returns true if processing failed.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get-instance-method" class="signature"><strong>#get</strong></a>
+        
+          <div class="summary"><p>Blocks untill future to complete and returns the value.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method" class="signature"><strong>#map</strong>(&block : T -> U)</a>
+        
+          <div class="summary"><p>Returns a Future with the function applied to  the result</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#onComplete%28%26block%20%3A%20Exception%2B%20%7C%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#onComplete</strong>(&block : Exception+ | T -> _)</a>
+        
+          <div class="summary"><p>Register a callback to be called when the Future completes.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#onFailure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method" class="signature"><strong>#onFailure</strong>(&block : Exception+ -> _)</a>
+        
+          <div class="summary"><p>Register a callback to be called when the Future fails</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#onSuccess%28%26block%20%3A%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#onSuccess</strong>(&block : T -> _)</a>
+        
+          <div class="summary"><p>Register a callback to be called when the Future succeeds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#succeeded%3F-instance-method" class="signature"><strong>#succeeded?</strong></a>
+        
+          <div class="summary"><p>Returns true if processing succeeded.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail">
+      <div class="signature" id="new%28execution_context%20%3D%20InfiniteFiberExecutionContext.new%2C%20%26block%20%3A%20-%3E%20T%29-class-method">
+        
+        def self.<strong>new</strong>(execution_context = <span class="t">InfiniteFiberExecutionContext</span>.<span class="k">new</span>, &block :  -> T)
+      </div>
+      
+        <div class="doc"><p>Constructor for a future
+Call Future.new with a block to get a future value
+Pass in an optional <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code> do define
+execution behaviour of the Future. By default, it
+creates a new <code><a href="../Futures/InfiniteFiberExecutionContext.html">InfiniteFiberExecutionContext</a></code> for
+each instance.  </p></div>
+      
+      
+    </div>
+    <hr/>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail">
+      <div class="signature" id="completed%3F-instance-method">
+        
+        def <strong>completed?</strong>
+      </div>
+      
+        <div class="doc"><p>Returns true if computation completed or error thrown
+false otherwise</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="error-instance-method">
+        
+        def <strong>error</strong>
+      </div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="failed%3F-instance-method">
+        
+        def <strong>failed?</strong>
+      </div>
+      
+        <div class="doc"><p>Returns true if processing failed.
+nil if still processing</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="get-instance-method">
+        
+        def <strong>get</strong>
+      </div>
+      
+        <div class="doc"><p>Blocks untill future to complete and returns
+the value. Returns nil if failure occurs. Returns the
+value if already complete</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method">
+        
+        def <strong>map</strong>(&block : T -> U)
+      </div>
+      
+        <div class="doc"><p>Returns a Future with the function applied to 
+the result</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="onComplete%28%26block%20%3A%20Exception%2B%20%7C%20T%20-%3E%20_%29-instance-method">
+        
+        def <strong>onComplete</strong>(&block : Exception+ | T -> _)
+      </div>
+      
+        <div class="doc"><p>Register a callback to be called when the Future
+completes. May be called with the result or the
+exception depending on success</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="onFailure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method">
+        
+        def <strong>onFailure</strong>(&block : Exception+ -> _)
+      </div>
+      
+        <div class="doc"><p>Register a callback to be called when the Future
+fails</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="onSuccess%28%26block%20%3A%20T%20-%3E%20_%29-instance-method">
+        
+        def <strong>onSuccess</strong>(&block : T -> _)
+      </div>
+      
+        <div class="doc"><p>Register a callback to be called when the Future
+succeeds. The callback is called with the value of
+the future</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="succeeded%3F-instance-method">
+        
+        def <strong>succeeded?</strong>
+      </div>
+      
+        <div class="doc"><p>Returns true if processing succeeded.
+nil if still processing</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+
+
+
+
+
+</body>
+</html>

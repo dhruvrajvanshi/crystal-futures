@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Futures for Crystal</h1>
+
+<p>Futures provide a nice way to reason about performing many operations in parallel– in an efficient and non-blocking way. The idea is simple, a Future is a sort of a placeholder object that you can create for a result that does not yet exist. Generally, the result of the Future is computed concurrently and can be later collected. Composing concurrent tasks in this way tends to result in faster, asynchronous, non-blocking parallel code.</p>
+
+<p>** Source : http://docs.scala-lang.org/overviews/core/futures.html</p>
+
+<h2>Usage</h2>
+
+<pre><code><span class="k">require</span> <span class="s">"./src/futures"</span>
+<span class="k">include</span> <span class="t">Futures</span>
+
+<span class="c"># Create a new future</span>
+a <span class="o">=</span> <span class="t">Future</span>.<span class="k">new</span> <span class="k">do</span>
+  someTimeConsumingOperation()
+<span class="k">end</span>
+
+<span class="c"># Register a callback on successful operation</span>
+a.onSuccess <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  doSomethingWithResult val
+<span class="k">end</span>
+a.onError <span class="k">do</span> <span class="o">|</span>err<span class="o">|</span>
+  raise err
+<span class="k">end</span>
+
+<span class="c"># Or handle both cases in one callback</span>
+<span class="c"># (assuming future returns a String)</span>
+a.onComplete <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
+  <span class="k">case</span> x
+  <span class="k">when</span> <span class="t">String</span>
+    puts x
+  <span class="k">when</span> <span class="t">Exception</span>
+    raise x
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Or block untill future completes</span>
+val <span class="o">=</span> a.get
+
+<span class="c"># compose new Futures from existing ones</span>
+b <span class="o">=</span> a.map <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  <span class="s">"String : "</span> <span class="o">+</span> val
+<span class="k">end</span>
+
+b.get</code></pre>
+
+<h2>Documentation</h2>
+
+<pre><code>git clone https<span class="n">:/</span><span class="s">/github.com/</span>dhruvrajvanshi<span class="s">/crystal-futures
+cd crystal-futures
+crystal docs</code></pre>
+
+<p>Documentation will be in the crystal-futures/docs folder</p>
+</body>
+</html>

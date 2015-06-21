@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+    var pathToIndex = "../index.html"
+  </script>
+  <script type="text/javascript" src="../js/type.js"></script>
+</head>
+<body>
+
+
+  <h1>module Futures::ExecutionContext</h1>
+
+
+
+  <h2>Overview</h2>
+
+  <p>An ExecutionContext can execute program logic
+asynchronously
+Include this module in a class to implement</p>
+
+<p>A block can be passed to the exec method to
+execute it asynchronously</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Direct including types</h2>
+  
+    <a href="../Futures/InfiniteFiberExecutionContext.html">Futures::InfiniteFiberExecutionContext</a>
+  
+
+
+
+
+  <h2>Defined in:</h2>
+  
+
+
+
+
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul>
+    
+      <li class="entry-summary">
+        <a href="#execute%28%26block%29-instance-method" class="signature"><strong>#execute</strong>(&block)</a>
+        
+          <div class="summary"><p>Runs a block of code on this execution context</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#execute%28callable%29-instance-method" class="signature"><strong>#execute</strong>(callable)</a>
+        
+          <div class="summary"><p>Overload for execute that takes an object with a call method</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail">
+      <div class="signature" id="execute%28%26block%29-instance-method">
+        abstract 
+        def <strong>execute</strong>(&block)
+      </div>
+      
+        <div class="doc"><p>Runs a block of code on this execution context</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="execute%28callable%29-instance-method">
+        
+        def <strong>execute</strong>(callable)
+      </div>
+      
+        <div class="doc"><p>Overload for execute that takes an object with
+a call method</p></div>
+      
+      
+    </div>
+    <hr/>
+  
+
+
+
+
+
+</body>
+</html>
