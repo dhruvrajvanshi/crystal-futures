@@ -44,9 +44,4 @@ b.get
 ```
 
 ## Documentation
-```
-git clone https://github.com/dhruvrajvanshi/crystal-futures
-cd crystal-futures
-crystal docs
-```
-Documentation will be in the crystal-futures/docs folder
+[Link](http://dhruvrajvanshi.github.io/crystal-futures/)
