@@ -15,6 +15,19 @@ module ExecutionContext
       callable.call
     end
   end
+
+  def submit(&block : ->T)
+    Future.new self, do
+      value = nil
+      ch = UnbufferedChannel(Int32).new
+      self.execute do
+        value = block.call
+        ch.send 0
+      end
+      ch.receive
+      value as T
+    end
+  end
 end
 
 # Implements `ExecutionContext`. Every call to `execute`
