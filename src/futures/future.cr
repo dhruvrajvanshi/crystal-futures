@@ -138,9 +138,6 @@ class Future(T)
     else
       @blocked_on_this += 1
       @completion_channel.receive
-      unless @value
-        raise @error as Exception
-      end
       @value
     end
   end
