@@ -41,6 +41,7 @@ class Future(T)
     @failed = nil
     @error = nil
     @value = nil
+    @blocked_on_this = 0
     @on_failure = [] of Exception+ -> Void
     @on_success = [] of T -> Void
     @on_complete = [] of (Exception+ | T) -> Void
@@ -135,6 +136,7 @@ class Future(T)
     if @completed
       @value
     else
+      @blocked_on_this += 1
       @completion_channel.receive
       unless @value
         raise @error as Exception
@@ -177,7 +179,12 @@ class Future(T)
             end
           end
         end
-        @completion_channel.send(0)
+
+        # Send a signal to for each thread blocked
+        # on this Future
+        @blocked_on_this.times do
+          @completion_channel.send(0)
+        end
       end
     end
   end
