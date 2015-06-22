@@ -53,14 +53,19 @@ class Future(T)
   # the result
   def map(&block : T->U)
     Future(U).new @execution_context, do
-      # block.call (self.get as T)
-      v = self.get
-      case v
-      when T
-        return block.call(v)
-      when Exception
-        raise v
+      val = nil
+      ch = UnbufferedChannel(Int32).new
+      self.onComplete do |result|
+        case result
+        when T
+          val = result
+          ch.send(0)
+        when Exception
+          raise result
+        end
       end
+      ch.receive()
+      block.call(val as T)
     end
   end
 
@@ -70,7 +75,9 @@ class Future(T)
   def onSuccess(&block : T -> _)
     @on_success << block
     if(@succeeded)
-      block.call(@value as T)
+      @execution_context.execute do
+        block.call(@value as T)
+      end
     end
   end
 
@@ -79,7 +86,9 @@ class Future(T)
   def onFailure(&block : Exception+ -> _)
     @on_failure << block
     if(@failed)
-      block.call(@error as Exception)
+      @execution_context.execute do
+        block.call(@error as Exception)
+      end
     end
   end
 
@@ -89,10 +98,12 @@ class Future(T)
   def onComplete(&block : (Exception+ | T) -> _)
     @on_complete << block
     if @completed
-      if @succeeded
-        block.call(@value as T)
-      else
-        block.call(@error as Exception)
+      @execution_context.execute do
+        if @succeeded
+          block.call(@value as T)
+        else
+          block.call(@error as Exception)
+        end
       end
     end
     self
@@ -166,7 +177,6 @@ class Future(T)
           end
         end
         @completion_channel.send(0)
-        @completion_channel.close
       end
     end
   end
