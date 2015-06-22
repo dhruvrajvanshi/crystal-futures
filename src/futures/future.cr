@@ -25,7 +25,8 @@
 
 class Future(T)
   getter error
-
+  getter value
+  
   # Constructor for a future
   # Call Future.new with a block to get a future value
   # Pass in an optional `ExecutionContext` do define
