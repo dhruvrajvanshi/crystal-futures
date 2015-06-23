@@ -44,7 +44,7 @@ class Future(T)
     @blocked_on_this = 0
     @on_failure = [] of Exception+ -> Void
     @on_success = [] of T -> Void
-    @on_complete = [] of (Exception+ | T) -> Void
+    @on_complete = [] of Future(T) -> Void
     @completion_channel = UnbufferedChannel(Int32).new
     @block = block
     @process = [->(v : T){v}]
@@ -95,16 +95,16 @@ class Future(T)
   end
 
   # Register a callback to be called when the Future
-  # completes. May be called with the result or the
-  # exception depending on success
-  def onComplete(&block : (Exception+ | T) -> _)
+  # completes. The callback will be called with the
+  # current instance on completion
+  def onComplete(&block : Future(T) -> _)
     @on_complete << block
     if @completed
       @execution_context.execute do
         if @succeeded
-          block.call(@value as T)
+          block.call(self)
         else
-          block.call(@error as Exception)
+          block.call(self)
         end
       end
     end
@@ -170,9 +170,9 @@ class Future(T)
         @on_complete.each do |callback|
         @execution_context.execute do
             if @succeeded
-              callback.call(@value as T)
+              callback.call(self)
             else
-              callback.call(@error as Exception)
+              callback.call(self)
             end
           end
         end
