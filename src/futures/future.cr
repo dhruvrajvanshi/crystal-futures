@@ -57,18 +57,12 @@ class Future(T)
   # the result
   def map(&block : T->U)
     Future(U).new @execution_context, do
-      val = nil
-      ch = UnbufferedChannel(Int32).new
-      self.onComplete do |r|
-        if r.succeeded?
-          val = r.value
-          ch.send(0)
-        else
-          raise r.error as Exception
-        end
+      val = self.get
+      if val
+        return block.call(val as T)
+      else
+        raise self.error as Exception
       end
-      ch.receive()
-      block.call(val as T)
     end
   end
 
@@ -76,7 +70,14 @@ class Future(T)
   # future succeeds and it's value matches the given
   # predicate
   def select(&block : T -> Bool)
-    
+    Future(T).new @execution_context, do
+      val = self.get
+      if val && block.call(val as T)
+        return val
+      else
+        raise PredicateFailureException.new "Future select predicate failed on value #{val}"
+      end
+    end
   end
 
   # Register a callback to be called when the Future
