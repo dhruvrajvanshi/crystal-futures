@@ -22,6 +22,8 @@
 #   x + 1
 # end
 # ```
+class PredicateFailureException < Exception
+end
 
 class Future(T)
   getter error
@@ -57,18 +59,24 @@ class Future(T)
     Future(U).new @execution_context, do
       val = nil
       ch = UnbufferedChannel(Int32).new
-      self.onComplete do |result|
-        case result
-        when T
-          val = result
+      self.onComplete do |r|
+        if r.succeeded?
+          val = r.value
           ch.send(0)
-        when Exception
-          raise result
+        else
+          raise r.error as Exception
         end
       end
       ch.receive()
       block.call(val as T)
     end
+  end
+
+  # Returns a new future that succeeds if current
+  # future succeeds and it's value matches the given
+  # predicate
+  def select(&block : T -> Bool)
+    
   end
 
   # Register a callback to be called when the Future
