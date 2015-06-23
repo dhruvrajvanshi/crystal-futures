@@ -80,6 +80,35 @@ class Future(T)
     end
   end
 
+  # Alias for `Future.select`
+  def filter(&block : T -> Bool)
+    select(block)
+  end
+
+  # Return a future whose exceptions are handled by
+  # the block.
+  # Eg.
+  # ```
+  # a = Future.new { networkCall }
+  # a.recover do |e|
+  #   case e
+  #   when Timeout
+  #     "Something"
+  #   when ServerError
+  #     "Something Else"
+  #   else
+  #     # Remember to raise e in the else case
+  #     raise e
+  #   end
+  # end
+  # ```
+  def recover(&block : Exception -> T)
+    Future(T).new @execution_context, do
+      self.get
+      block.call(self.error as Exception)
+    end
+  end
+
   # Register a callback to be called when the Future
   # succeeds. The callback is called with the value of
   # the future
