@@ -8,7 +8,7 @@
 # a = Future.new do
 #   someTimeConsumingOperation()
 # end
-# a.onSuccess do |val|
+# a.on_success do |val|
 #   doSomethingWithResult val
 # end
 # ```
@@ -112,7 +112,7 @@ class Future(T)
   # Register a callback to be called when the Future
   # succeeds. The callback is called with the value of
   # the future
-  def onSuccess(&block : T -> _)
+  def on_success(&block : T -> _)
     @on_success << block
     if(@succeeded)
       @execution_context.execute do
@@ -123,7 +123,7 @@ class Future(T)
 
   # Register a callback to be called when the Future
   # fails
-  def onFailure(&block : Exception+ -> _)
+  def on_failure(&block : Exception+ -> _)
     @on_failure << block
     if(@failed)
       @execution_context.execute do
@@ -135,7 +135,7 @@ class Future(T)
   # Register a callback to be called when the Future
   # completes. The callback will be called with the
   # current instance on completion
-  def onComplete(&block : Future(T) -> _)
+  def on_complete(&block : Future(T) -> _)
     @on_complete << block
     if @completed
       @execution_context.execute do

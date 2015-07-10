@@ -14,16 +14,16 @@ a = Future.new do
 end
 
 # Register a callback on successful operation
-a.onSuccess do |val|
+a.on_success do |val|
   doSomethingWithResult val
 end
-a.onError do |err|
+a.on_failure do |err|
   raise err
 end
 
 # Or handle both cases in one callback
 # (assuming future returns a String)
-a.onComplete do |x|
+a.on_complete do |x|
   case x
   when String
     puts x
