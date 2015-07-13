@@ -22,13 +22,13 @@ a.on_failure do |err|
 end
 
 # Or handle both cases in one callback
-# (assuming future returns a String)
-a.on_complete do |x|
-  case x
-  when String
-    puts x
-  when Exception
-    raise x
+a.on_complete do |result|
+  try = result.get
+  case try
+  when Success
+    puts try.get
+  when Failure
+    raise try.error
   end
 end
 

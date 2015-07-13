@@ -22,13 +22,8 @@
 #   x + 1
 # end
 # ```
-class PredicateFailureException < Exception
-end
-
 class Future(T)
-  getter error
   getter value
-  
   # Constructor for a future
   # Call Future.new with a block to get a future value
   # Pass in an optional `ExecutionContext` do define
@@ -39,30 +34,25 @@ class Future(T)
     @execution_context = InfiniteFiberExecutionContext.new,
     &block : -> T)
     @completed = false
-    @succeeded = nil
-    @failed = nil
-    @error = nil
-    @value = nil
+    @succeeded = false
+    @failed = false
+    @value = None(Try(T)).new
     @blocked_on_this = 0
     @on_failure = [] of Exception+ -> Void
     @on_success = [] of T -> Void
-    @on_complete = [] of Future(T) -> Void
+    @on_complete = [] of (Future(T)) -> Void
     @completion_channel = UnbufferedChannel(Int32).new
     @block = block
     @process = [->(v : T){v}]
     execute()
   end
 
+
   # Returns a Future with the function applied to 
   # the result
   def map(&block : T->U)
     Future(U).new @execution_context, do
-      val = self.get
-      if val
-        return block.call(val as T)
-      else
-        raise self.error as Exception
-      end
+      block.call(self.get)
     end
   end
 
@@ -71,9 +61,8 @@ class Future(T)
   # predicate
   def select(&block : T -> Bool)
     Future(T).new @execution_context, do
-      val = self.get
-      if val && block.call(val as T)
-        return val
+      if val = block.call(self.get)
+        return @value.get.get
       else
         raise PredicateFailureException.new "Future select predicate failed on value #{val}"
       end
@@ -82,8 +71,11 @@ class Future(T)
 
   # Alias for `Future.select`
   def filter(&block : T -> Bool)
-    select(block)
+    select do |val|
+      block.call(val)
+    end
   end
+
 
   # Return a future whose exceptions are handled by
   # the block.
@@ -104,21 +96,31 @@ class Future(T)
   # ```
   def recover(&block : Exception -> T)
     Future(T).new @execution_context, do
-      self.get
-      block.call(self.error as Exception)
+      begin
+        self.get
+      rescue e
+        block.call(e)
+      end
     end
   end
 
   # Register a callback to be called when the Future
   # succeeds. The callback is called with the value of
   # the future
+  # Eg.
+  # ```
+  # f.on_success do |value|
+  #   do_something_with_value value
+  # end
+  # ```
   def on_success(&block : T -> _)
     @on_success << block
     if(@succeeded)
       @execution_context.execute do
-        block.call(@value as T)
+        block.call(@value.get.get as T)
       end
     end
+    self
   end
 
   # Register a callback to be called when the Future
@@ -127,23 +129,31 @@ class Future(T)
     @on_failure << block
     if(@failed)
       @execution_context.execute do
-        block.call(@error as Exception)
+        block.call(self.error as Exception)
       end
     end
+    self
   end
 
   # Register a callback to be called when the Future
-  # completes. The callback will be called with the
-  # current instance on completion
+  # completes. The callback will be called an instance of
+  # `Try(T)`
+  # Eg.
+  # ```
+  # f.on_complete do |t|
+  #   case t
+  #   when Success
+  #     print "Got #{t.get}"
+  #   when Failure
+  #     raise t.error
+  #   end
+  # end
+  # ```
   def on_complete(&block : Future(T) -> _)
     @on_complete << block
     if @completed
       @execution_context.execute do
-        if @succeeded
-          block.call(self)
-        else
-          block.call(self)
-        end
+        block.call(self)
       end
     end
     self
@@ -156,48 +166,72 @@ class Future(T)
   end
 
   # Returns true if processing succeeded.
-  # nil if still processing
   def succeeded?
     return @succeeded
   end
 
-  # Returns true if processing failed.
-  # nil if still processing
+  # Returns true if processing failed
   def failed?
     return @failed
   end
 
   # Blocks untill future to complete and returns
-  # the value. Returns nil if failure occurs. Returns the
+  # the value. Raises exception failure occurs. Returns the
   # value if already complete
   def get
     if @completed
-      @value
+      @value.get.get
     else
       @blocked_on_this += 1
       @completion_channel.receive
-      @value
+      @value.get.get
+    end
+  end
+
+  # This returns the error produced by the Future if any.
+  # If the future isn't complete or it completed successfully,
+  # it returns nil. This makes it indistinguishable from success
+  # in case of a future of type Nil.
+  # Don't use this method. Use `Future#get` instead to get
+  # a single value which indicates whether Future is complete
+  # or not(`None`/`Some`) and whether the operation was a 
+  # success or failure(`Success`/`Failure`).
+  # To get the error of a failed future, do
+  # ```
+  # future.get.error
+  # ```
+  # Note that this will result in a NoSuchElementException
+  # in case the future hasn't been completed
+  def error
+    case @value
+    when None(Try(T))
+      nil
+    when Some(Try(T))
+      v = @value.get
+      case v
+      when Success(T)
+        nil
+      when Failure(T)
+        v.error
+      end
     end
   end
 
   private def execute()
     @execution_context.execute do
       begin
-        @value = @block.call
-        # @process.each do |p|
-        #   @value = p.call(@value as T)
-        # end
+        @value = Some(Try(T)).new(Success(T).new @block.call)
         @succeeded = true
         @failed = false
         @on_success.each do |callback|
           @execution_context.execute do 
-            callback.call(@value as T)
+            callback.call(@value.get.get)
           end
         end
       rescue e
+        @value = Some(Try(T)).new(Failure(T).new e)
         @failed = true
         @succeeded = false
-        @error = e
         @execution_context.execute do
           @on_failure.each do |callback|
             callback.call(e)
@@ -206,12 +240,8 @@ class Future(T)
       ensure
         @completed = true
         @on_complete.each do |callback|
-        @execution_context.execute do
-            if @succeeded
-              callback.call(self)
-            else
-              callback.call(self)
-            end
+          @execution_context.execute do
+            callback.call(self)
           end
         end
 

@@ -22,21 +22,21 @@ a <span class="o">=</span> <span class="t">Future</span>.<span class="k">new</sp
 <span class="k">end</span>
 
 <span class="c"># Register a callback on successful operation</span>
-a.onSuccess <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+a.on_success <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
   doSomethingWithResult val
 <span class="k">end</span>
-a.onError <span class="k">do</span> <span class="o">|</span>err<span class="o">|</span>
+a.on_failure <span class="k">do</span> <span class="o">|</span>err<span class="o">|</span>
   raise err
 <span class="k">end</span>
 
 <span class="c"># Or handle both cases in one callback</span>
-<span class="c"># (assuming future returns a String)</span>
-a.onComplete <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
-  <span class="k">case</span> x
-  <span class="k">when</span> <span class="t">String</span>
-    puts x
-  <span class="k">when</span> <span class="t">Exception</span>
-    raise x
+a.on_complete <span class="k">do</span> <span class="o">|</span>result<span class="o">|</span>
+  try <span class="o">=</span> result.get
+  <span class="k">case</span> try
+  <span class="k">when</span> <span class="t">Success</span>
+    puts try.get
+  <span class="k">when</span> <span class="t">Failure</span>
+    raise try.error
   <span class="k">end</span>
 <span class="k">end</span>
 
@@ -52,10 +52,6 @@ b.get</code></pre>
 
 <h2>Documentation</h2>
 
-<pre><code>git clone https<span class="n">:/</span><span class="s">/github.com/</span>dhruvrajvanshi<span class="s">/crystal-futures
-cd crystal-futures
-crystal docs</code></pre>
-
-<p>Documentation will be in the crystal-futures/docs folder</p>
+<p><a href="http://dhruvrajvanshi.github.io/crystal-futures/" target="_blank">Link</a></p>
 </body>
 </html>

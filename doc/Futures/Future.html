@@ -15,6 +15,32 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>A Future represents an asynchronous computation that
+returns a value.
+Callbacks can be registered against futures to
+run when the computation completes or fails</p>
+
+<p>Eg.</p>
+
+<pre><code>a <span class="o">=</span> <span class="t">Future</span>.<span class="k">new</span> <span class="k">do</span>
+  someTimeConsumingOperation()
+<span class="k">end</span>
+a.on_success <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  doSomethingWithResult val
+<span class="k">end</span></code></pre>
+
+<p>You can compose new futures using existing ones by
+calling <code><a href="../Futures/Future.html#map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method">#map</a></code> on them. Composed futures will succeed
+only when parent succeeds.</p>
+
+<p>Eg.</p>
+
+<pre><code>b <span class="o">=</span> a.map <span class="k">do</span> <span class="o">|</span>x<span class="o">|</span>
+  x <span class="o">+</span> <span class="n">1</span>
+<span class="k">end</span></code></pre>
+
 
 
 
@@ -34,6 +60,11 @@
 
 
   <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr">futures/future.cr</a>
+    
+    <br/>
   
 
 
@@ -67,12 +98,21 @@
       <li class="entry-summary">
         <a href="#error-instance-method" class="signature"><strong>#error</strong></a>
         
+          <div class="summary"><p>This returns the error produced by the Future if any.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#failed%3F-instance-method" class="signature"><strong>#failed?</strong></a>
         
-          <div class="summary"><p>Returns true if processing failed.</p></div>
+          <div class="summary"><p>Returns true if processing failed</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#filter%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method" class="signature"><strong>#filter</strong>(&block : T -> Bool)</a>
+        
+          <div class="summary"><p>Alias for <code><a href="../Futures/Future.html">Future</a>.select</code></p></div>
         
       </li>
     
@@ -91,23 +131,37 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#onComplete%28%26block%20%3A%20Exception%2B%20%7C%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#onComplete</strong>(&block : Exception+ | T -> _)</a>
+        <a href="#on_complete%28%26block%20%3A%20Future%28T%29%20-%3E%20_%29-instance-method" class="signature"><strong>#on_complete</strong>(&block : Future(T) -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future completes.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#onFailure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method" class="signature"><strong>#onFailure</strong>(&block : Exception+ -> _)</a>
+        <a href="#on_failure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method" class="signature"><strong>#on_failure</strong>(&block : Exception+ -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future fails</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#onSuccess%28%26block%20%3A%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#onSuccess</strong>(&block : T -> _)</a>
+        <a href="#on_success%28%26block%20%3A%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#on_success</strong>(&block : T -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future succeeds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#recover%28%26block%20%3A%20Exception%20-%3E%20T%29-instance-method" class="signature"><strong>#recover</strong>(&block : Exception -> T)</a>
+        
+          <div class="summary"><p>Return a future whose exceptions are handled by the block.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method" class="signature"><strong>#select</strong>(&block : T -> Bool)</a>
+        
+          <div class="summary"><p>Returns a new future that succeeds if current future succeeds and it's value matches the given predicate</p></div>
         
       </li>
     
@@ -115,6 +169,11 @@
         <a href="#succeeded%3F-instance-method" class="signature"><strong>#succeeded?</strong></a>
         
           <div class="summary"><p>Returns true if processing succeeded.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#value-instance-method" class="signature"><strong>#value</strong></a>
         
       </li>
     
@@ -141,6 +200,9 @@ creates a new <code><a href="../Futures/InfiniteFiberExecutionContext.html">Infi
 each instance.  </p></div>
       
       
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L33" target="_blank">View source</a>]</div>
+      
     </div>
     <hr/>
   
@@ -159,6 +221,9 @@ each instance.  </p></div>
 false otherwise</p></div>
       
       
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L164" target="_blank">View source</a>]</div>
+      
     </div>
     <hr/>
   
@@ -168,6 +233,24 @@ false otherwise</p></div>
         def <strong>error</strong>
       </div>
       
+        <div class="doc"><p>This returns the error produced by the Future if any.
+If the future isn't complete or it completed successfully,
+it returns nil. This makes it indistinguishable from success
+in case of a future of type Nil.
+Don't use this method. Use <code><a href="../Futures/Future.html#get-instance-method">Future#get</a></code> instead to get
+a single value which indicates whether Future is complete
+or not(<code><a href="../Futures/None.html">None</a></code>/<code><a href="../Futures/Some.html">Some</a></code>) and whether the operation was a 
+success or failure(<code><a href="../Futures/Success.html">Success</a></code>/<code><a href="../Futures/Failure.html">Failure</a></code>).
+To get the error of a failed future, do</p>
+
+<pre><code>future.get.error</code></pre>
+
+<p>Note that this will result in a NoSuchElementException
+in case the future hasn't been completed</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L205" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
@@ -178,9 +261,26 @@ false otherwise</p></div>
         def <strong>failed?</strong>
       </div>
       
-        <div class="doc"><p>Returns true if processing failed.
-nil if still processing</p></div>
+        <div class="doc"><p>Returns true if processing failed</p></div>
       
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L174" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="filter%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method">
+        
+        def <strong>filter</strong>(&block : T -> Bool)
+      </div>
+      
+        <div class="doc"><p>Alias for <code><a href="../Futures/Future.html">Future</a>.select</code></p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L73" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
@@ -192,9 +292,12 @@ nil if still processing</p></div>
       </div>
       
         <div class="doc"><p>Blocks untill future to complete and returns
-the value. Returns nil if failure occurs. Returns the
+the value. Raises exception failure occurs. Returns the
 value if already complete</p></div>
       
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L181" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
@@ -209,46 +312,120 @@ value if already complete</p></div>
 the result</p></div>
       
       
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L53" target="_blank">View source</a>]</div>
+      
     </div>
     <hr/>
   
     <div class="entry-detail">
-      <div class="signature" id="onComplete%28%26block%20%3A%20Exception%2B%20%7C%20T%20-%3E%20_%29-instance-method">
+      <div class="signature" id="on_complete%28%26block%20%3A%20Future%28T%29%20-%3E%20_%29-instance-method">
         
-        def <strong>onComplete</strong>(&block : Exception+ | T -> _)
+        def <strong>on_complete</strong>(&block : <a href="../Futures/Future.html">Futures::Future</a>(T) -> _)
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
-completes. May be called with the result or the
-exception depending on success</p></div>
+completes. The callback will be called an instance of
+<code><a href="../Futures/Try.html">Try</a>(T)</code>
+Eg.</p>
+
+<pre><code>f.on_complete <span class="k">do</span> <span class="o">|</span>t<span class="o">|</span>
+  <span class="k">case</span> t
+  <span class="k">when</span> <span class="t">Success</span>
+    print <span class="s">"Got </span><span class="i">#{</span></span>t.get<span class="s"><span class="i">}</span>"</span>
+  <span class="k">when</span> <span class="t">Failure</span>
+    raise t.error
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
       
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L152" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
   
     <div class="entry-detail">
-      <div class="signature" id="onFailure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method">
+      <div class="signature" id="on_failure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method">
         
-        def <strong>onFailure</strong>(&block : Exception+ -> _)
+        def <strong>on_failure</strong>(&block : Exception+ -> _)
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
 fails</p></div>
       
       
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L128" target="_blank">View source</a>]</div>
+      
     </div>
     <hr/>
   
     <div class="entry-detail">
-      <div class="signature" id="onSuccess%28%26block%20%3A%20T%20-%3E%20_%29-instance-method">
+      <div class="signature" id="on_success%28%26block%20%3A%20T%20-%3E%20_%29-instance-method">
         
-        def <strong>onSuccess</strong>(&block : T -> _)
+        def <strong>on_success</strong>(&block : T -> _)
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
 succeeds. The callback is called with the value of
-the future</p></div>
+the future
+Eg.</p>
+
+<pre><code>f.on_success <span class="k">do</span> <span class="o">|</span>value<span class="o">|</span>
+  do_something_with_value value
+<span class="k">end</span></code></pre></div>
       
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L116" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="recover%28%26block%20%3A%20Exception%20-%3E%20T%29-instance-method">
+        
+        def <strong>recover</strong>(&block : Exception -> T)
+      </div>
+      
+        <div class="doc"><p>Return a future whose exceptions are handled by
+the block.
+Eg.</p>
+
+<pre><code>a <span class="o">=</span> <span class="t">Future</span>.<span class="k">new</span> { networkCall }
+a.recover <span class="k">do</span> <span class="o">|</span>e<span class="o">|</span>
+  <span class="k">case</span> e
+  <span class="k">when</span> <span class="t">Timeout</span>
+    <span class="s">"Something"</span>
+  <span class="k">when</span> <span class="t">ServerError</span>
+    <span class="s">"Something Else"</span>
+  <span class="k">else</span>
+    <span class="c"># Remember to raise e in the else case</span>
+    raise e
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L97" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="select%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method">
+        
+        def <strong>select</strong>(&block : T -> Bool)
+      </div>
+      
+        <div class="doc"><p>Returns a new future that succeeds if current
+future succeeds and it's value matches the given
+predicate</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L62" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
@@ -259,9 +436,24 @@ the future</p></div>
         def <strong>succeeded?</strong>
       </div>
       
-        <div class="doc"><p>Returns true if processing succeeded.
-nil if still processing</p></div>
+        <div class="doc"><p>Returns true if processing succeeded.</p></div>
       
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L169" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="value-instance-method">
+        
+        def <strong>value</strong>
+      </div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L26" target="_blank">View source</a>]</div>
       
     </div>
     <hr/>
