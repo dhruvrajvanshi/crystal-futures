@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+    var pathToIndex = "../index.html"
+  </script>
+  <script type="text/javascript" src="../js/type.js"></script>
+</head>
+<body>
+
+
+  <h1>class Futures::Promise(T)</h1>
+
+
+
+  <h2>Overview</h2>
+
+  <p>Promise is an objectwhich can be completed with a value
+or failed with an exception.
+Eg.</p>
+
+<pre><code>p <span class="o">=</span> <span class="t">Promise</span>(<span class="t">Symbol</span>).<span class="k">new</span>
+f <span class="o">=</span> p.future
+f.on_success <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  puts <span class="s">"Future completed with value </span><span class="i">#{</span></span>val<span class="s"><span class="i">}</span>"</span>
+<span class="k">end</span>
+p.success(<span class="n">:Hello</span>)</code></pre>
+
+<pre><code><span class="s">"Future completed with value Hello"</span></code></pre>
+
+
+
+
+
+  <h2>Superclass hierarchy</h2>
+  <div style="padding-left: 0px">Object</div><div style="padding-left: 20px">Reference</div><div style="padding-left: 40px"><a href="../Futures/Promise.html">Futures::Promise(T)</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr">futures/promise.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul>
+    
+      <li class="entry-summary">
+        <a href="#completed%3F-instance-method" class="signature"><strong>#completed?</strong></a>
+        
+          <div class="summary"><p>Returns whether the promise has already been  completed with  a value or an exception</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#failure%28error%20%3A%20Exception%29-instance-method" class="signature"><strong>#failure</strong>(error : Exception)</a>
+        
+          <div class="summary"><p>Completes the promise with an exception</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#future-instance-method" class="signature"><strong>#future</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#success%28value%20%3A%20T%29-instance-method" class="signature"><strong>#success</strong>(value : T)</a>
+        
+          <div class="summary"><p>Completes the promise with a value</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#try_complete%28result%20%3A%20Try%28T%29%29-instance-method" class="signature"><strong>#try_complete</strong>(result : Try(T))</a>
+        
+          <div class="summary"><p>Tries to complete the promise with either a value ot exception</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail">
+      <div class="signature" id="new-class-method">
+        
+        def self.<strong>new</strong>
+      </div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L17" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail">
+      <div class="signature" id="completed%3F-instance-method">
+        
+        def <strong>completed?</strong>
+      </div>
+      
+        <div class="doc"><p>Returns whether the promise has already been  completed with 
+a value or an exception</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L29" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="failure%28error%20%3A%20Exception%29-instance-method">
+        
+        def <strong>failure</strong>(error : Exception)
+      </div>
+      
+        <div class="doc"><p>Completes the promise with an exception</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L64" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="future-instance-method">
+        
+        def <strong>future</strong>
+      </div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L16" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="success%28value%20%3A%20T%29-instance-method">
+        
+        def <strong>success</strong>(value : T)
+      </div>
+      
+        <div class="doc"><p>Completes the promise with a value</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L56" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+    <div class="entry-detail">
+      <div class="signature" id="try_complete%28result%20%3A%20Try%28T%29%29-instance-method">
+        
+        def <strong>try_complete</strong>(result : <a href="../Futures/Try.html">Futures::Try</a>(T))
+      </div>
+      
+        <div class="doc"><p>Tries to complete the promise with either a value ot exception</p></div>
+      
+      
+        <br/>
+        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/promise.cr#L34" target="_blank">View source</a>]</div>
+      
+    </div>
+    <hr/>
+  
+
+
+
+
+
+</body>
+</html>

@@ -14,21 +14,21 @@ a = Future.new do
 end
 
 # Register a callback on successful operation
-a.onSuccess do |val|
+a.on_success do |val|
   doSomethingWithResult val
 end
-a.onError do |err|
+a.on_failure do |err|
   raise err
 end
 
 # Or handle both cases in one callback
-# (assuming future returns a String)
-a.onComplete do |x|
-  case x
-  when String
-    puts x
-  when Exception
-    raise x
+a.on_complete do |result|
+  try = result.get
+  case try
+  when Success
+    puts try.get
+  when Failure
+    raise try.error
   end
 end
 
@@ -44,9 +44,4 @@ b.get
 ```
 
 ## Documentation
-```
-git clone https://github.com/dhruvrajvanshi/crystal-futures
-cd crystal-futures
-crystal docs
-```
-Documentation will be in the crystal-futures/docs folder
+[Link](http://dhruvrajvanshi.github.io/crystal-futures/)
