@@ -2,37 +2,131 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/gtramontina/crystal-futures">
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript">
-    var pathToIndex = "../index.html"
-  </script>
-  <script type="text/javascript" src="../js/type.js"></script>
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Futures::InfiniteFiberExecutionContext - github.com/gtramontina/crystal-futures</title>
 </head>
 <body>
 
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
 
-  <h1>class Futures::InfiniteFiberExecutionContext</h1>
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/gtramontina/crystal-futures/Futures" data-name="futures">
+      <a href="../Futures.html">Futures</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/ExecutionContext" data-name="futures::executioncontext">
+      <a href="../Futures/ExecutionContext.html">ExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Failure" data-name="futures::failure(t)">
+      <a href="../Futures/Failure.html">Failure</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Future" data-name="futures::future(t)">
+      <a href="../Futures/Future.html">Future</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/IllegalStateException" data-name="futures::illegalstateexception">
+      <a href="../Futures/IllegalStateException.html">IllegalStateException</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/gtramontina/crystal-futures/Futures/InfiniteFiberExecutionContext" data-name="futures::infinitefiberexecutioncontext">
+      <a href="../Futures/InfiniteFiberExecutionContext.html">InfiniteFiberExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/None" data-name="futures::none(t)">
+      <a href="../Futures/None.html">None</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/NoSuchElementException" data-name="futures::nosuchelementexception">
+      <a href="../Futures/NoSuchElementException.html">NoSuchElementException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Option" data-name="futures::option(t)">
+      <a href="../Futures/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/PredicateFailureException" data-name="futures::predicatefailureexception">
+      <a href="../Futures/PredicateFailureException.html">PredicateFailureException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Promise" data-name="futures::promise(t)">
+      <a href="../Futures/Promise.html">Promise</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Some" data-name="futures::some(t)">
+      <a href="../Futures/Some.html">Some</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Success" data-name="futures::success(t)">
+      <a href="../Futures/Success.html">Success</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Try" data-name="futures::try(t)">
+      <a href="../Futures/Try.html">Try</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Futures::InfiniteFiberExecutionContext
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Futures/InfiniteFiberExecutionContext.html">Futures::InfiniteFiberExecutionContext</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
 
 
 
   <h2>Overview</h2>
 
-  <p>Implements <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code>. Every call to <code><a href="../Futures/InfiniteFiberExecutionContext.html#execute%28%26block%20%3A%20-%3E%20%29-instance-method">#execute</a></code>
+  <p>Implements <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code>. Every call to <code><a href="../Futures/InfiniteFiberExecutionContext.html#execute%28%26block%29-instance-method">#execute</a></code>
 spawns a new Fiber</p>
 
 
 
 
 
-  <h2>Superclass hierarchy</h2>
-  <div style="padding-left: 0px">Object</div><div style="padding-left: 20px">Reference</div><div style="padding-left: 40px"><a href="../Futures/InfiniteFiberExecutionContext.html">Futures::InfiniteFiberExecutionContext</a></div>
-
-
-
   <h2>Included Modules</h2>
+  <ul class="other-types-list">
   
-    <a href="../Futures/ExecutionContext.html">Futures::ExecutionContext</a>
+    <li class="other-type"><a href="../Futures/ExecutionContext.html">Futures::ExecutionContext</a></li>
   
+  </ul>
 
 
 
@@ -46,7 +140,7 @@ spawns a new Fiber</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/execution_context.cr">futures/execution_context.cr</a>
+      <a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/execution_context.cr" target="_blank">futures/execution_context.cr</a>
     
     <br/>
   
@@ -58,10 +152,10 @@ spawns a new Fiber</p>
 
 
   <h2>Instance Method Summary</h2>
-  <ul>
+  <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#execute%28%26block%20%3A%20-%3E%20%29-instance-method" class="signature"><strong>#execute</strong>(&block : -> )</a>
+        <a href="#execute%28%26block%29-instance-method" class="signature"><strong>#execute</strong>(&block)</a>
         
       </li>
     
@@ -71,28 +165,68 @@ spawns a new Fiber</p>
 
 
 
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Futures/ExecutionContext.html">Futures::ExecutionContext</a></code></h3>
+  
+    <a href="../Futures/ExecutionContext.html#execute%28callable%29-instance-method" class="tooltip">
+      <span>execute(callable)<br/>execute(&block)</span>
+    execute</a>, 
+  
+    <a href="../Futures/ExecutionContext.html#submit%28%26block%3A-%3ET%29-instance-method" class="tooltip">
+      <span>submit(&block :  -> T)</span>
+    submit</a>
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail">
-      <div class="signature" id="execute%28%26block%20%3A%20-%3E%20%29-instance-method">
+    <div class="entry-detail" id="execute(&amp;block)-instance-method">
+      <div class="signature">
         
-        def <strong>execute</strong>(&block :  -> )
+        def <strong>execute</strong>(&block)
+
+        <a class="method-permalink" href="#execute%28%26block%29-instance-method">#</a>
       </div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/execution_context.cr#L38" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/execution_context.cr#L39" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
 
 
 
 
+</div>
 
 </body>
 </html>
