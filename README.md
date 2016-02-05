@@ -5,7 +5,7 @@ Futures provide a nice way to reason about performing many operations in paralle
 
 ## Usage
 ```crystal
-require "./src/futures"
+require "futures"
 include Futures
 
 # Create a new future
@@ -32,7 +32,7 @@ a.on_complete do |result|
   end
 end
 
-# Or block untill future completes
+# Or block until future completes
 val = a.get
 
 # compose new Futures from existing ones
