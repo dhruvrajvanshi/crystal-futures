@@ -2,16 +2,113 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/gtramontina/crystal-futures">
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript">
-    var pathToIndex = "../index.html"
-  </script>
-  <script type="text/javascript" src="../js/type.js"></script>
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Futures::Future(T) - github.com/gtramontina/crystal-futures</title>
 </head>
 <body>
 
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
 
-  <h1>class Futures::Future(T)</h1>
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/gtramontina/crystal-futures/Futures" data-name="futures">
+      <a href="../Futures.html">Futures</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/ExecutionContext" data-name="futures::executioncontext">
+      <a href="../Futures/ExecutionContext.html">ExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Failure" data-name="futures::failure(t)">
+      <a href="../Futures/Failure.html">Failure</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/gtramontina/crystal-futures/Futures/Future" data-name="futures::future(t)">
+      <a href="../Futures/Future.html">Future</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/IllegalStateException" data-name="futures::illegalstateexception">
+      <a href="../Futures/IllegalStateException.html">IllegalStateException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/InfiniteFiberExecutionContext" data-name="futures::infinitefiberexecutioncontext">
+      <a href="../Futures/InfiniteFiberExecutionContext.html">InfiniteFiberExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/None" data-name="futures::none(t)">
+      <a href="../Futures/None.html">None</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/NoSuchElementException" data-name="futures::nosuchelementexception">
+      <a href="../Futures/NoSuchElementException.html">NoSuchElementException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Option" data-name="futures::option(t)">
+      <a href="../Futures/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/PredicateFailureException" data-name="futures::predicatefailureexception">
+      <a href="../Futures/PredicateFailureException.html">PredicateFailureException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Promise" data-name="futures::promise(t)">
+      <a href="../Futures/Promise.html">Promise</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Some" data-name="futures::some(t)">
+      <a href="../Futures/Some.html">Some</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Success" data-name="futures::success(t)">
+      <a href="../Futures/Success.html">Success</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Try" data-name="futures::try(t)">
+      <a href="../Futures/Try.html">Try</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Futures::Future(T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Futures/Future.html">Futures::Future(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
 
 
 
@@ -32,7 +129,7 @@ a.on_success <span class="k">do</span> <span class="o">|</span>val<span class="o
 <span class="k">end</span></code></pre>
 
 <p>You can compose new futures using existing ones by
-calling <code><a href="../Futures/Future.html#map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method">#map</a></code> on them. Composed futures will succeed
+calling <code><a href="../Futures/Future.html#map%28%26block%3AT-%3EU%29-instance-method">#map</a></code> on them. Composed futures will succeed
 only when parent succeeds.</p>
 
 <p>Eg.</p>
@@ -42,11 +139,6 @@ only when parent succeeds.</p>
 <span class="k">end</span></code></pre>
 
 
-
-
-
-  <h2>Superclass hierarchy</h2>
-  <div style="padding-left: 0px">Object</div><div style="padding-left: 20px">Reference</div><div style="padding-left: 40px"><a href="../Futures/Future.html">Futures::Future(T)</a></div>
 
 
 
@@ -62,7 +154,7 @@ only when parent succeeds.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr">futures/future.cr</a>
+      <a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr" target="_blank">futures/future.cr</a>
     
     <br/>
   
@@ -72,10 +164,10 @@ only when parent succeeds.</p>
 
 
   <h2>Class Method Summary</h2>
-  <ul>
+  <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28execution_context%20%3D%20InfiniteFiberExecutionContext.new%2C%20%26block%20%3A%20-%3E%20T%29-class-method" class="signature"><strong>.new</strong>(execution_context = InfiniteFiberExecutionContext.new, &block : -> T)</a>
+        <a href="#new%28execution_context%3D%3Cspanclass%3D%22t%22%3EInfiniteFiberExecutionContext%3C%2Fspan%3E.%3Cspanclass%3D%22k%22%3Enew%3C%2Fspan%3E%2C%26block%3A-%3ET%29-class-method" class="signature"><strong>.new</strong>(execution_context = <span class="t">InfiniteFiberExecutionContext</span>.<span class="k">new</span>, &block :  -> T)</a>
         
           <div class="summary"><p>Constructor for a future Call Future.new with a block to get a future value Pass in an optional <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code> do define execution behaviour of the Future.</p></div>
         
@@ -86,7 +178,7 @@ only when parent succeeds.</p>
 
 
   <h2>Instance Method Summary</h2>
-  <ul>
+  <ul class="list-summary">
     
       <li class="entry-summary">
         <a href="#completed%3F-instance-method" class="signature"><strong>#completed?</strong></a>
@@ -110,7 +202,7 @@ only when parent succeeds.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#filter%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method" class="signature"><strong>#filter</strong>(&block : T -> Bool)</a>
+        <a href="#filter%28%26block%3AT-%3EBool%29-instance-method" class="signature"><strong>#filter</strong>(&block : T -> Bool)</a>
         
           <div class="summary"><p>Alias for <code><a href="../Futures/Future.html">Future</a>.select</code></p></div>
         
@@ -124,42 +216,42 @@ only when parent succeeds.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method" class="signature"><strong>#map</strong>(&block : T -> U)</a>
+        <a href="#map%28%26block%3AT-%3EU%29-instance-method" class="signature"><strong>#map</strong>(&block : T -> U)</a>
         
-          <div class="summary"><p>Returns a Future with the function applied to  the result</p></div>
+          <div class="summary"><p>Returns a Future with the function applied to the result</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#on_complete%28%26block%20%3A%20Future%28T%29%20-%3E%20_%29-instance-method" class="signature"><strong>#on_complete</strong>(&block : Future(T) -> _)</a>
+        <a href="#on_complete%28%26block%3AFutures%3A%3AFuture%28T%29-%3E_%29-instance-method" class="signature"><strong>#on_complete</strong>(&block : Futures::Future(T) -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future completes.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#on_failure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method" class="signature"><strong>#on_failure</strong>(&block : Exception+ -> _)</a>
+        <a href="#on_failure%28%26block%3AException%2B-%3E_%29-instance-method" class="signature"><strong>#on_failure</strong>(&block : Exception+ -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future fails</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#on_success%28%26block%20%3A%20T%20-%3E%20_%29-instance-method" class="signature"><strong>#on_success</strong>(&block : T -> _)</a>
+        <a href="#on_success%28%26block%3AT-%3E_%29-instance-method" class="signature"><strong>#on_success</strong>(&block : T -> _)</a>
         
           <div class="summary"><p>Register a callback to be called when the Future succeeds.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#recover%28%26block%20%3A%20Exception%20-%3E%20T%29-instance-method" class="signature"><strong>#recover</strong>(&block : Exception -> T)</a>
+        <a href="#recover%28%26block%3AException-%3ET%29-instance-method" class="signature"><strong>#recover</strong>(&block : Exception -> T)</a>
         
           <div class="summary"><p>Return a future whose exceptions are handled by the block.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#select%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method" class="signature"><strong>#select</strong>(&block : T -> Bool)</a>
+        <a href="#select%28%26block%3AT-%3EBool%29-instance-method" class="signature"><strong>#select</strong>(&block : T -> Bool)</a>
         
           <div class="summary"><p>Returns a new future that succeeds if current future succeeds and it's value matches the given predicate</p></div>
         
@@ -183,13 +275,33 @@ only when parent succeeds.</p>
 
 
 
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail">
-      <div class="signature" id="new%28execution_context%20%3D%20InfiniteFiberExecutionContext.new%2C%20%26block%20%3A%20-%3E%20T%29-class-method">
+    <div class="entry-detail" id="new(execution_context=&lt;spanclass=&quot;t&quot;&gt;InfiniteFiberExecutionContext&lt;/span&gt;.&lt;spanclass=&quot;k&quot;&gt;new&lt;/span&gt;,&amp;block:-&gt;T)-class-method">
+      <div class="signature">
         
         def self.<strong>new</strong>(execution_context = <span class="t">InfiniteFiberExecutionContext</span>.<span class="k">new</span>, &block :  -> T)
+
+        <a class="method-permalink" href="#new%28execution_context%3D%3Cspanclass%3D%22t%22%3EInfiniteFiberExecutionContext%3C%2Fspan%3E.%3Cspanclass%3D%22k%22%3Enew%3C%2Fspan%3E%2C%26block%3A-%3ET%29-class-method">#</a>
       </div>
       
         <div class="doc"><p>Constructor for a future
@@ -197,40 +309,46 @@ Call Future.new with a block to get a future value
 Pass in an optional <code><a href="../Futures/ExecutionContext.html">ExecutionContext</a></code> do define
 execution behaviour of the Future. By default, it
 creates a new <code><a href="../Futures/InfiniteFiberExecutionContext.html">InfiniteFiberExecutionContext</a></code> for
-each instance.  </p></div>
+each instance.</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L33" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L34" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
 
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail">
-      <div class="signature" id="completed%3F-instance-method">
+    <div class="entry-detail" id="completed?-instance-method">
+      <div class="signature">
         
         def <strong>completed?</strong>
+
+        <a class="method-permalink" href="#completed%3F-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns true if computation completed or error thrown
 false otherwise</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L164" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L165" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="error-instance-method">
+    <div class="entry-detail" id="error-instance-method">
+      <div class="signature">
         
         def <strong>error</strong>
+
+        <a class="method-permalink" href="#error-instance-method">#</a>
       </div>
       
         <div class="doc"><p>This returns the error produced by the Future if any.
@@ -239,7 +357,7 @@ it returns nil. This makes it indistinguishable from success
 in case of a future of type Nil.
 Don't use this method. Use <code><a href="../Futures/Future.html#get-instance-method">Future#get</a></code> instead to get
 a single value which indicates whether Future is complete
-or not(<code><a href="../Futures/None.html">None</a></code>/<code><a href="../Futures/Some.html">Some</a></code>) and whether the operation was a 
+or not(<code><a href="../Futures/None.html">None</a></code>/<code><a href="../Futures/Some.html">Some</a></code>) and whether the operation was a
 success or failure(<code><a href="../Futures/Success.html">Success</a></code>/<code><a href="../Futures/Failure.html">Failure</a></code>).
 To get the error of a failed future, do</p>
 
@@ -248,80 +366,95 @@ To get the error of a failed future, do</p>
 <p>Note that this will result in a NoSuchElementException
 in case the future hasn't been completed</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L205" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L206" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="failed%3F-instance-method">
+    <div class="entry-detail" id="failed?-instance-method">
+      <div class="signature">
         
         def <strong>failed?</strong>
+
+        <a class="method-permalink" href="#failed%3F-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns true if processing failed</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L174" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L175" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="filter%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method">
+    <div class="entry-detail" id="filter(&amp;block:T-&gt;Bool)-instance-method">
+      <div class="signature">
         
         def <strong>filter</strong>(&block : T -> Bool)
+
+        <a class="method-permalink" href="#filter%28%26block%3AT-%3EBool%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Alias for <code><a href="../Futures/Future.html">Future</a>.select</code></p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L73" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L74" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="get-instance-method">
+    <div class="entry-detail" id="get-instance-method">
+      <div class="signature">
         
         def <strong>get</strong>
+
+        <a class="method-permalink" href="#get-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Blocks untill future to complete and returns
 the value. Raises exception failure occurs. Returns the
 value if already complete</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L181" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L182" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="map%28%26block%20%3A%20T%20-%3E%20U%29-instance-method">
+    <div class="entry-detail" id="map(&amp;block:T-&gt;U)-instance-method">
+      <div class="signature">
         
         def <strong>map</strong>(&block : T -> U)
+
+        <a class="method-permalink" href="#map%28%26block%3AT-%3EU%29-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Returns a Future with the function applied to 
+        <div class="doc"><p>Returns a Future with the function applied to
 the result</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L53" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L54" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="on_complete%28%26block%20%3A%20Future%28T%29%20-%3E%20_%29-instance-method">
+    <div class="entry-detail" id="on_complete(&amp;block:Futures::Future(T)-&gt;_)-instance-method">
+      <div class="signature">
         
         def <strong>on_complete</strong>(&block : <a href="../Futures/Future.html">Futures::Future</a>(T) -> _)
+
+        <a class="method-permalink" href="#on_complete%28%26block%3AFutures%3A%3AFuture%28T%29-%3E_%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
@@ -332,39 +465,45 @@ Eg.</p>
 <pre><code>f.on_complete <span class="k">do</span> <span class="o">|</span>t<span class="o">|</span>
   <span class="k">case</span> t
   <span class="k">when</span> <span class="t">Success</span>
-    print <span class="s">"Got </span><span class="i">#{</span></span>t.get<span class="s"><span class="i">}</span>"</span>
+    print <span class="s">&quot;Got </span><span class="i">#{</span></span>t.get<span class="s"><span class="i">}</span>&quot;</span>
   <span class="k">when</span> <span class="t">Failure</span>
     raise t.error
   <span class="k">end</span>
 <span class="k">end</span></code></pre></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L152" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L153" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="on_failure%28%26block%20%3A%20Exception%2B%20-%3E%20_%29-instance-method">
+    <div class="entry-detail" id="on_failure(&amp;block:Exception+-&gt;_)-instance-method">
+      <div class="signature">
         
         def <strong>on_failure</strong>(&block : Exception+ -> _)
+
+        <a class="method-permalink" href="#on_failure%28%26block%3AException%2B-%3E_%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
 fails</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L128" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L129" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="on_success%28%26block%20%3A%20T%20-%3E%20_%29-instance-method">
+    <div class="entry-detail" id="on_success(&amp;block:T-&gt;_)-instance-method">
+      <div class="signature">
         
         def <strong>on_success</strong>(&block : T -> _)
+
+        <a class="method-permalink" href="#on_success%28%26block%3AT-%3E_%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Register a callback to be called when the Future
@@ -376,17 +515,20 @@ Eg.</p>
   do_something_with_value value
 <span class="k">end</span></code></pre></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L116" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L117" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="recover%28%26block%20%3A%20Exception%20-%3E%20T%29-instance-method">
+    <div class="entry-detail" id="recover(&amp;block:Exception-&gt;T)-instance-method">
+      <div class="signature">
         
         def <strong>recover</strong>(&block : Exception -> T)
+
+        <a class="method-permalink" href="#recover%28%26block%3AException-%3ET%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Return a future whose exceptions are handled by
@@ -397,71 +539,82 @@ Eg.</p>
 a.recover <span class="k">do</span> <span class="o">|</span>e<span class="o">|</span>
   <span class="k">case</span> e
   <span class="k">when</span> <span class="t">Timeout</span>
-    <span class="s">"Something"</span>
+    <span class="s">&quot;Something&quot;</span>
   <span class="k">when</span> <span class="t">ServerError</span>
-    <span class="s">"Something Else"</span>
+    <span class="s">&quot;Something Else&quot;</span>
   <span class="k">else</span>
     <span class="c"># Remember to raise e in the else case</span>
     raise e
   <span class="k">end</span>
 <span class="k">end</span></code></pre></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L97" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L98" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="select%28%26block%20%3A%20T%20-%3E%20Bool%29-instance-method">
+    <div class="entry-detail" id="select(&amp;block:T-&gt;Bool)-instance-method">
+      <div class="signature">
         
         def <strong>select</strong>(&block : T -> Bool)
+
+        <a class="method-permalink" href="#select%28%26block%3AT-%3EBool%29-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns a new future that succeeds if current
 future succeeds and it's value matches the given
 predicate</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L62" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L63" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="succeeded%3F-instance-method">
+    <div class="entry-detail" id="succeeded?-instance-method">
+      <div class="signature">
         
         def <strong>succeeded?</strong>
+
+        <a class="method-permalink" href="#succeeded%3F-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns true if processing succeeded.</p></div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L169" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L170" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
-    <div class="entry-detail">
-      <div class="signature" id="value-instance-method">
+    <div class="entry-detail" id="value-instance-method">
+      <div class="signature">
         
         def <strong>value</strong>
+
+        <a class="method-permalink" href="#value-instance-method">#</a>
       </div>
       
-      
-        <br/>
-        <div>[<a href="https://github.com/dhruvrajvanshi/crystal-futures/blob/51880d3a268d1cbbcbaa5cca90e77efad8e61596/src/futures/future.cr#L26" target="_blank">View source</a>]</div>
-      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/gtramontina/crystal-futures/blob/1db733e335b047f23f4bf17bf43ed221c9aee20f/src/futures/future.cr#L27" target="_blank">View source</a>]
+        
+      </div>
     </div>
-    <hr/>
   
 
 
 
 
+</div>
 
 </body>
 </html>

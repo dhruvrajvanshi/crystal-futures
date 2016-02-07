@@ -1,20 +1,153 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/gtramontina/crystal-futures">
   <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript">
-    function setMainFrame() {
-      var mainFrame = document.getElementById("main");
-      if (window.location.hash == "") {
-        mainFrame.src = "main.html"
-      } else {
-        mainFrame.src = unescape(window.location.hash.substring(1));
-      }
-    }
-  </script>
+  <script type="text/javascript" src="js/doc.js"></script>
+  <title>README - github.com/gtramontina/crystal-futures</title>
 </head>
-<frameset cols="20%,*" onload="setMainFrame()">
-  <frame name="list" src="list.html" />
-  <frame id="main" name="main" />
-</frameset>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li class="current"><a href="index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent " data-id="github.com/gtramontina/crystal-futures/Futures" data-name="futures">
+      <a href="Futures.html">Futures</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/ExecutionContext" data-name="futures::executioncontext">
+      <a href="Futures/ExecutionContext.html">ExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Failure" data-name="futures::failure(t)">
+      <a href="Futures/Failure.html">Failure</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Future" data-name="futures::future(t)">
+      <a href="Futures/Future.html">Future</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/IllegalStateException" data-name="futures::illegalstateexception">
+      <a href="Futures/IllegalStateException.html">IllegalStateException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/InfiniteFiberExecutionContext" data-name="futures::infinitefiberexecutioncontext">
+      <a href="Futures/InfiniteFiberExecutionContext.html">InfiniteFiberExecutionContext</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/None" data-name="futures::none(t)">
+      <a href="Futures/None.html">None</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/NoSuchElementException" data-name="futures::nosuchelementexception">
+      <a href="Futures/NoSuchElementException.html">NoSuchElementException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Option" data-name="futures::option(t)">
+      <a href="Futures/Option.html">Option</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/PredicateFailureException" data-name="futures::predicatefailureexception">
+      <a href="Futures/PredicateFailureException.html">PredicateFailureException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Promise" data-name="futures::promise(t)">
+      <a href="Futures/Promise.html">Promise</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Some" data-name="futures::some(t)">
+      <a href="Futures/Some.html">Some</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Success" data-name="futures::success(t)">
+      <a href="Futures/Success.html">Success</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/gtramontina/crystal-futures/Futures/Try" data-name="futures::try(t)">
+      <a href="Futures/Try.html">Try</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1>Futures for Crystal</h1>
+
+<p>Futures provide a nice way to reason about performing many operations in parallel– in an efficient and non-blocking way. The idea is simple, a Future is a sort of a placeholder object that you can create for a result that does not yet exist. Generally, the result of the Future is computed concurrently and can be later collected. Composing concurrent tasks in this way tends to result in faster, asynchronous, non-blocking parallel code.</p>
+
+<p>** Source : http://docs.scala-lang.org/overviews/core/futures.html</p>
+
+<h2>Usage</h2>
+
+<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;futures&quot;</span>
+<span class="k">include</span> <span class="t">Futures</span>
+
+<span class="c"># Create a new future</span>
+a <span class="o">=</span> <span class="t">Future</span>.<span class="k">new</span> <span class="k">do</span>
+  someTimeConsumingOperation()
+<span class="k">end</span>
+
+<span class="c"># Register a callback on successful operation</span>
+a.on_success <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  doSomethingWithResult val
+<span class="k">end</span>
+a.on_failure <span class="k">do</span> <span class="o">|</span>err<span class="o">|</span>
+  raise err
+<span class="k">end</span>
+
+<span class="c"># Or handle both cases in one callback</span>
+a.on_complete <span class="k">do</span> <span class="o">|</span>result<span class="o">|</span>
+  try <span class="o">=</span> result.get
+  <span class="k">case</span> try
+  <span class="k">when</span> <span class="t">Success</span>
+    puts try.get
+  <span class="k">when</span> <span class="t">Failure</span>
+    raise try.error
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Or block until future completes</span>
+val <span class="o">=</span> a.get
+
+<span class="c"># compose new Futures from existing ones</span>
+b <span class="o">=</span> a.map <span class="k">do</span> <span class="o">|</span>val<span class="o">|</span>
+  <span class="s">&quot;String : &quot;</span> <span class="o">+</span> val
+<span class="k">end</span>
+
+b.get</code></pre>
+
+<h2>Documentation</h2>
+
+<p><a href="http://dhruvrajvanshi.github.io/crystal-futures/" target="_blank">Link</a></p>
+</div>
+</body>
 </html>
