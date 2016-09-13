@@ -45,9 +45,9 @@ module Futures
           when Success
             v = @result.get.get
           when Failure
-            raise (@result.get as Failure).error
+            raise (@result.get.as Failure).error
           end
-          v as T
+          v.as T
         end
         true
       end

@@ -26,7 +26,7 @@ module Futures
           ch.send 0
         end
         ch.receive
-        value as T
+        value.as T
       end
     end
   end
