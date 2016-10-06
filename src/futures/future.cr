@@ -39,12 +39,11 @@ module Futures
       @failed = false
       @value = None(Try(T)).new
       @blocked_on_this = 0
-      @on_failure = [] of Exception+ -> Void
+      @on_failure = [] of Exception -> Void
       @on_success = [] of T -> Void
       @on_complete = [] of (Future(T)) -> Void
       @completion_channel = Channel::Unbuffered(Int32).new
       @block = block
-      @process = [->(v : T){v}]
       execute()
     end
 
@@ -63,7 +62,7 @@ module Futures
     def select(&block : T -> Bool)
       Future(T).new @execution_context, do
         if val = block.call(self.get)
-          return @value.get.get
+          next @value.get.get
         else
           raise PredicateFailureException.new "Future select predicate failed on value #{val}"
         end
@@ -72,9 +71,7 @@ module Futures
 
     # Alias for `Future.select`
     def filter(&block : T -> Bool)
-      select do |val|
-        block.call(val)
-      end
+      self.select(&block)
     end
 
 
@@ -118,7 +115,7 @@ module Futures
       @on_success << block
       if(@succeeded)
         @execution_context.execute do
-          block.call(@value.get.get as T)
+          block.call(@value.get.get.as T)
         end
       end
       self
@@ -126,11 +123,11 @@ module Futures
 
     # Register a callback to be called when the Future
     # fails
-    def on_failure(&block : Exception+ -> _)
+    def on_failure(&block : Exception -> _)
       @on_failure << block
       if(@failed)
         @execution_context.execute do
-          block.call(self.error as Exception)
+          block.call(self.error.as Exception)
         end
       end
       self
