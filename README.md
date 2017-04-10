@@ -1,4 +1,4 @@
-# Futures for Crystal
+# crystal-futures [![Build Status](https://travis-ci.org/dhruvrajvanshi/crystal-futures.svg?branch=master)](https://travis-ci.org/dhruvrajvanshi/crystal-futures)
 Futures provide a nice way to reason about performing many operations in parallel– in an efficient and non-blocking way. The idea is simple, a Future is a sort of a placeholder object that you can create for a result that does not yet exist. Generally, the result of the Future is computed concurrently and can be later collected. Composing concurrent tasks in this way tends to result in faster, asynchronous, non-blocking parallel code.
 
 ** Source : http://docs.scala-lang.org/overviews/core/futures.html
