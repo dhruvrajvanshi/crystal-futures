@@ -35,6 +35,58 @@ describe Future do
       future2 = future1.filter {|v| v == "goodbye world"}
       expect_raises { future2.get }
     end
+
+    it "implements of" do
+      future = Future.of 23
+      future.get.should eq 23
+    end
+
+    it "implements map" do
+      future = Future.of 1
+      future.map do |x|
+        x + 1
+      end.get.should eq 2
+
+      future = Future(Int32).new do
+        raise "Error"
+      end
+
+      expect_raises do
+        future.map {|x| x + 1}
+            .get
+      end
+
+      future = Future.of 2
+      expect_raises do
+        future.map {|x| raise "asdf" }
+          .get
+      end
+    end
+
+    it "implements bind" do
+      future = Future.of 1
+      future.bind do |x|
+        Future.of x + 1
+      end.get.should eq 2
+
+      future = Future(Int32).new do
+        raise "error"
+      end
+
+      future1 = future.bind do |x|
+        Future.of x + 1
+      end
+
+      expect_raises { future1.get }
+    end
+
+    it "works with mdo macro" do
+      mdo({
+        x <= Future.of(1),
+        y <= Future.of(x + 1),
+        Future.of y + 1
+      }).get.should eq 3
+    end
   end
 
 end

@@ -1,7 +1,12 @@
 name: futures
-version: 1.0.0
+version: 2.0.0
 
 authors:
   - dhruvrajvanshi
+
+dependencies:
+  crz:
+    git: https://github.com/dhruvrajvanshi/crz
+    version: ~> 0.2.0
 
 license: MIT

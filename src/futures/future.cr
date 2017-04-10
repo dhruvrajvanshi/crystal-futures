@@ -1,3 +1,5 @@
+require "crz"
+include CRZ
 module Futures
   # A Future represents an asynchronous computation that
   # returns a value.
@@ -24,6 +26,7 @@ module Futures
   # end
   # ```
   class Future(T)
+    include Monad(T)
     getter value
     # Constructor for a future
     # Call Future.new with a block to get a future value
@@ -47,10 +50,23 @@ module Futures
       execute()
     end
 
+    # Returns a Future containing given value
+    def self.of(value : A) : Future(A) forall A
+      Future.new do
+        value
+      end
+    end
+
+    def bind(&block : T -> Future(U)) : Future(U) forall U
+      Future(U).new @execution_context, do
+        block.call(self.get).get
+      end
+    end
+
 
     # Returns a Future with the function applied to
     # the result
-    def map(&block : T->U)
+    def map(&block : T->U) : Future(U) forall U
       Future(U).new @execution_context, do
         block.call(self.get)
       end
